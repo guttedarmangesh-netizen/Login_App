@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const RegistrationForm = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({                    // State to hold form data
     fname: '',
     lname: '',
     phone: '',
@@ -11,20 +11,20 @@ const RegistrationForm = () => {
     password: ''
   });
 
-  const navigate = useNavigate();
+  const navigate = useNavigate();                               // React Router navigation hook
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
+  const handleChange = (e) => {                              //handle input changes
+    const { name, value } = e.target;                        // Destructure name and value from event target
+    setFormData(prev => ({                                  // Update form data state
+      ...prev,                                              // Spread previous state
+      [name]: value                     // Update specific field
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {                 // Handle form submission
+    e.preventDefault();                               // Prevent default form submission behavior
 
-    const payload = {
+    const payload = {                       // Prepare payload for API
       name: formData.fname,
       lastname: formData.lname,
       mobno: formData.phone,
@@ -33,7 +33,7 @@ const RegistrationForm = () => {
     };
 
     try {
-      const response = await axios.post('http://localhost:82/api/users/register', payload);
+      const response = await axios.post('http://localhost:82/api/users/register', payload); // Send POST request to API
       setFormData({
         fname: '',
         lname: '',
@@ -41,6 +41,7 @@ const RegistrationForm = () => {
         email: '',
         password: ''
       });
+      alert('Registration successful! Please login.');
       navigate('/login');
     } catch (error) {
       console.error('Registration failed:', error.response?.data || error.message);

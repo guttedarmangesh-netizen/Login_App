@@ -18,8 +18,10 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:82/api/users/login', loginData);
-      localStorage.setItem('token', response.data.token);
+      const response = await axios.post('http://localhost:82/api/users/login', loginData); // Send POST request to API
+      // setMessage('Login successful!');
+      localStorage.setItem('token', response.data.token);                                  // Store token in localStorage
+      localStorage.setItem('user', JSON.stringify(response.data.user));                     // Store user info in localStorage
       navigate('/dashboard');
     } catch (error) {
       console.error('Login failed:', error.response?.data || error.message);

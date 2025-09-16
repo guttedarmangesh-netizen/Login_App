@@ -93,6 +93,7 @@ const Dashboard = () => {
       <div className="container bg-light p-4 rounded shadow" style={{ maxWidth: '900px', width: '100%' }}>
         <div className="d-flex justify-content-between align-items-center mb-4">
           <h2 className="text-dark">User Dashboard</h2>
+          <h3 className='text-dark'>{token.name}</h3>
           <button className="btn btn-outline-danger" onClick={handleLogout}>
             Logout
           </button>
@@ -199,3 +200,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
